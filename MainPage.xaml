@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotasDbanda.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label Text="Bienvenido al calculo de notas "
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <Frame BorderColor="Brown" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Sección 1 – Datos Generales"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+                    <Grid ColumnDefinitions="Auto,*"
+              RowDefinitions="Auto,Auto"
+              ColumnSpacing="10"
+              RowSpacing="10">
+
+                        <!-- Fila 0 -->
+                        <Label Text="Seleccione el estudiante:"
+                   VerticalOptions="Center"
+                   Grid.Row="0" Grid.Column="0" />
+
+                        <Picker x:Name="pkEstudiantes"
+                  
+                                VerticalOptions="Center" HorizontalOptions="Fill"
+                    Grid.Row="0" Grid.Column="1"
+                    />
+
+                        <!-- Fila 1 -->
+                        <Label Text="Seleccione la fecha:"
+                   VerticalOptions="Center"
+                   Grid.Row="1" Grid.Column="0" />
+
+                        <DatePicker x:Name="dpDate"
+                        Format="MM/dd/yyyy"
+                        Grid.Row="1" Grid.Column="1"
+                        HorizontalOptions="Fill" />
+
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- Sección 2 -->
+            <Frame BorderColor="Blue" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Notas" FontAttributes="Bold" HorizontalOptions="Center" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
+                        <!-- 🟩 Columna 0: Parcial 1 -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label Text="Parcial 1" FontAttributes="Bold" HorizontalOptions="Center" />
+
+                            <Label Text="Seguimiento 1 (0.3):" />
+                            <Entry x:Name="entrySeguimiento1" Keyboard="Numeric" Placeholder="Ej: 7.5" />
+
+                            <Label Text="Examen 1 (0.2):" />
+                            <Entry x:Name="entryExamen1" Keyboard="Numeric" Placeholder="Ej: 6.5" />
+
+                           
+                        </VerticalStackLayout>
+
+                        <!-- 🟦 Columna 1: Parcial 2 -->
+                        <VerticalStackLayout Grid.Column="1" Spacing="8">
+                            <Label Text="Parcial 2" FontAttributes="Bold" HorizontalOptions="Center" />
+
+                            <Label Text="Seguimiento 2 (0.3):" />
+                            <Entry x:Name="entrySeguimiento2" Keyboard="Numeric" Placeholder="Ej: 8.0" />
+
+                            <Label Text="Examen 2 (0.2):" />
+                            <Entry x:Name="entryExamen2" Keyboard="Numeric" Placeholder="Ej: 7.0" />
+
+                           
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Button Text="calcular notas "
+        Clicked="OnClickCalculoNotas"
+                            Margin="8"
+        />
+                </VerticalStackLayout>
+            </Frame>
+
+
+
+            <!-- Sección 3 -->
+            <Frame BorderColor="red">
+                <VerticalStackLayout>
+                    <Label FontAttributes="Bold" Text="CALCULO" HorizontalOptions="Center"/>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label  Text="parcial 1" HorizontalOptions="Center" />
+                            <Label x:Name="lblNotaParcial1" Text="Nota Parcial 1: " FontAttributes="Italic" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="8">
+                            <Label  Text="parcial 2" HorizontalOptions="Center"/>
+                            <Label x:Name="lblNotaParcial2" Text="Nota Parcial 2: " FontAttributes="Italic" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Button Text="verificar si pasa de año"
+                            Clicked="OnclicVerificarPase"
+                            Margin="8"/>
+                </VerticalStackLayout>
+                    
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

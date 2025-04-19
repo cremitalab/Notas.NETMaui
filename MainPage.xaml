@@ -12,7 +12,7 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center"/>
 
-            <Frame BorderColor="Brown" Padding="10">
+            <Frame BorderColor="Blue" Padding="10" >
                 <VerticalStackLayout>
                     <Label Text="Sección 1 – Datos Generales"
                FontAttributes="Bold"
@@ -50,7 +50,7 @@
 
 
             <!-- Sección 2 -->
-            <Frame BorderColor="Blue" Padding="10">
+            <Frame BorderColor="LightBlue" Padding="10">
                 <VerticalStackLayout>
                     <Label Text="Notas" FontAttributes="Bold" HorizontalOptions="Center" />
 
@@ -91,7 +91,7 @@
 
 
             <!-- Sección 3 -->
-            <Frame BorderColor="red">
+            <Frame BorderColor="WhiteSmoke">
                 <VerticalStackLayout>
                     <Label FontAttributes="Bold" Text="CALCULO" HorizontalOptions="Center"/>
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="20">

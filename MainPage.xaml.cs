@@ -83,15 +83,51 @@
             decimal notaParcial1 = nota1;
             decimal notaParcial2 = nota2;
         }
-        public void OnclicVerificarPase(object sender, EventArgs e) { 
-        if(string.IsNullOrWhiteSpace(lblNotaParcial1.Text)||
-           string.IsNullOrWhiteSpace(lblNotaParcial2.Text))
+        public void OnclicVerificarPase(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(lblNotaParcial1.Text) ||
+                string.IsNullOrWhiteSpace(lblNotaParcial2.Text))
             {
-                DisplayAlert("Error", "realice la operacion  ", "Cancelar");
+                DisplayAlert("Error", "Realice el cálculo de las notas primero.", "Cancelar");
                 return;
             }
+
+            // Extraer los valores numéricos desde los labels
+            if (decimal.TryParse(lblNotaParcial1.Text.Replace("Nota Parcial 1: ", ""), out decimal parcial1) &&
+                decimal.TryParse(lblNotaParcial2.Text.Replace("Nota Parcial 2: ", ""), out decimal parcial2))
+            {
+                decimal notaFinal = parcial1 + parcial2;
+                string estado = "";
+
+                if (notaFinal >= 7)
+                {
+                    estado = "Aprobado";
+                }
+                else if (notaFinal >= 5 && notaFinal <= 6.9m)
+                {
+                    estado = "Complementario";
+                }
+                else
+                {
+                    estado = "Reprobado";
+                }
+
+                string mensaje = $"Estudiante: {pkEstudiantes.SelectedItem}\n" +
+                                 $"Fecha: {dpDate.Date:dd/MM/yyyy}\n" +
+                                 $"Nota Parcial 1: {parcial1:F2}\n" +
+                                 $"Nota Parcial 2: {parcial2:F2}\n" +
+                                 $"Nota Final: {notaFinal:F2}\n" +
+                                 $"Estado: {estado}";
+
+                DisplayAlert("Resultado Final", mensaje, "OK");
+            }
+            else
+            {
+                DisplayAlert("Error", "No se pudieron leer las notas calculadas.", "OK");
+            }
         }
+
     }
 
-    } 
+} 
 

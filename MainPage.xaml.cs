@@ -15,15 +15,7 @@
 
         public void OnClickCalculoNotas(object sender, EventArgs e)
         {
-            if (pkEstudiantes.SelectedItem == null ||
-                dpDate.Date == default ||
-                string.IsNullOrWhiteSpace(entrySeguimiento1.Text) ||
-                string.IsNullOrWhiteSpace(entryExamen1.Text) ||
-                string.IsNullOrWhiteSpace(entrySeguimiento2.Text) ||
-                string.IsNullOrWhiteSpace(entryExamen2.Text))
-            {
-                DisplayAlert("Error", "Ingrese todos los campos", "cancelar");
-            }
+           
             string errores = "";
 
             // Validar campos vacíos

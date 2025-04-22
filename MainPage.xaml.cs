@@ -64,8 +64,8 @@
             }
 
             // Si todo está bien, calculamos
-            decimal nota1 = seg1 * 0.3m + ex1 * 0.2m;
-            decimal nota2 = seg2 * 0.3m + ex2 * 0.2m;
+            decimal nota1 = (seg1 * 0.3m) + (ex1 * 0.2m);
+            decimal nota2 = (seg2 * 0.3m) + (ex2 * 0.2m);
 
             lblNotaParcial1.Text = $"Nota Parcial 1: {nota1:F2}";
             lblNotaParcial2.Text = $"Nota Parcial 2: {nota2:F2}";

@@ -1,4 +1,6 @@
-﻿namespace NotasDbanda
+﻿using System.Globalization;
+
+namespace NotasDbanda
 {
     public partial class MainPage : ContentPage
     {
@@ -36,26 +38,29 @@
             // Validar números y rangos
             decimal seg1, ex1, seg2, ex2;
 
-            if (!decimal.TryParse(entrySeguimiento1.Text, out seg1))
+            string inputSeg1 = entrySeguimiento1.Text.Replace(',', '.');
+            if (!decimal.TryParse(inputSeg1, NumberStyles.Any, CultureInfo.InvariantCulture, out seg1))
                 errores += "La Nota de Seguimiento 1 debe ser un número válido.\n";
             else if (seg1 < 0.1m || seg1 > 10)
                 errores += "La Nota de Seguimiento 1 debe estar entre 0.1 y 10.\n";
 
-            if (!decimal.TryParse(entryExamen1.Text, out ex1))
+            string inputEx1 = entryExamen1.Text.Replace(',', '.');
+            if (!decimal.TryParse(inputEx1, NumberStyles.Any, CultureInfo.InvariantCulture, out ex1))
                 errores += "La Nota del Examen 1 debe ser un número válido.\n";
             else if (ex1 < 0.1m || ex1 > 10)
                 errores += "La Nota del Examen 1 debe estar entre 0.1 y 10.\n";
 
-            if (!decimal.TryParse(entrySeguimiento2.Text, out seg2))
+            string inputSeg2 = entrySeguimiento2.Text.Replace(',', '.');
+            if (!decimal.TryParse(inputSeg2, NumberStyles.Any, CultureInfo.InvariantCulture, out seg2))
                 errores += "La Nota de Seguimiento 2 debe ser un número válido.\n";
             else if (seg2 < 0.1m || seg2 > 10)
                 errores += "La Nota de Seguimiento 2 debe estar entre 0.1 y 10.\n";
 
-            if (!decimal.TryParse(entryExamen2.Text, out ex2))
+            string inputEx2 = entryExamen2.Text.Replace(',', '.');
+            if (!decimal.TryParse(inputEx2, NumberStyles.Any, CultureInfo.InvariantCulture, out ex2))
                 errores += "La Nota del Examen 2 debe ser un número válido.\n";
             else if (ex2 < 0.1m || ex2 > 10)
                 errores += "La Nota del Examen 2 debe estar entre 0.1 y 10.\n";
-
             // Mostrar errores si existen
             if (!string.IsNullOrEmpty(errores))
             {

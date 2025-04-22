@@ -15,13 +15,12 @@
 
         public void OnClickCalculoNotas(object sender, EventArgs e)
         {
-           
             string errores = "";
 
             // Validar campos vacíos
             if (pkEstudiantes.SelectedItem == null)
                 errores += "Seleccione un estudiante.\n";
-
+      
             if (string.IsNullOrWhiteSpace(entrySeguimiento1.Text))
                 errores += "Ingrese la Nota de Seguimiento 1.\n";
 
@@ -77,46 +76,34 @@
         }
         public void OnclicVerificarPase(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(lblNotaParcial1.Text) ||
-                string.IsNullOrWhiteSpace(lblNotaParcial2.Text))
+            // Extraer valores numéricos desde los labels
+            bool esParcial1Valido = decimal.TryParse(lblNotaParcial1.Text.Replace("Nota Parcial 1: ", ""), out decimal parcial1);
+            bool esParcial2Valido = decimal.TryParse(lblNotaParcial2.Text.Replace("Nota Parcial 2: ", ""), out decimal parcial2);
+
+            if (!esParcial1Valido || !esParcial2Valido)
             {
                 DisplayAlert("Error", "Realice el cálculo de las notas primero.", "Cancelar");
                 return;
             }
 
-            // Extraer los valores numéricos desde los labels
-            if (decimal.TryParse(lblNotaParcial1.Text.Replace("Nota Parcial 1: ", ""), out decimal parcial1) &&
-                decimal.TryParse(lblNotaParcial2.Text.Replace("Nota Parcial 2: ", ""), out decimal parcial2))
-            {
-                decimal notaFinal = parcial1 + parcial2;
-                string estado = "";
+            decimal notaFinal = parcial1 + parcial2;
+            string estado = "";
 
-                if (notaFinal >= 7)
-                {
-                    estado = "Aprobado";
-                }
-                else if (notaFinal >= 5 && notaFinal <= 6.9m)
-                {
-                    estado = "Complementario";
-                }
-                else
-                {
-                    estado = "Reprobado";
-                }
-
-                string mensaje = $"Estudiante: {pkEstudiantes.SelectedItem}\n" +
-                                 $"Fecha: {dpDate.Date:dd/MM/yyyy}\n" +
-                                 $"Nota Parcial 1: {parcial1:F2}\n" +
-                                 $"Nota Parcial 2: {parcial2:F2}\n" +
-                                 $"Nota Final: {notaFinal:F2}\n" +
-                                 $"Estado: {estado}";
-
-                DisplayAlert("Resultado Final", mensaje, "OK");
-            }
+            if (notaFinal >= 7)
+                estado = "Aprobado";
+            else if (notaFinal >= 5)
+                estado = "Complementario";
             else
-            {
-                DisplayAlert("Error", "No se pudieron leer las notas calculadas.", "OK");
-            }
+                estado = "Reprobado";
+
+            string mensaje = $"Estudiante: {pkEstudiantes.SelectedItem}\n" +
+                             $"Fecha: {dpDate.Date:dd/MM/yyyy}\n" +
+                             $"Nota Parcial 1: {parcial1:F2}\n" +
+                             $"Nota Parcial 2: {parcial2:F2}\n" +
+                             $"Nota Final: {notaFinal:F2}\n" +
+                             $"Estado: {estado}";
+
+            DisplayAlert("Resultado Final", mensaje, "OK");
         }
 
     }
